@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context="com.sorinmarti.sphinx.QuizTypeAnswerFragment">
+
+    <Button
+        android:id="@+id/btnAnswer1"
+        style="@style/SphinxAnswerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight=".25"
+        android:padding="0dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/btnAnswer2"
+        style="@style/SphinxAnswerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight=".25"
+        android:padding="0dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/btnAnswer3"
+        style="@style/SphinxAnswerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight=".25"
+        android:padding="0dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/btnAnswer4"
+        style="@style/SphinxAnswerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight=".25"
+        android:padding="0dp"
+        android:text="Button" />
+
+</LinearLayout>
