@@ -1,6 +1,7 @@
 package com.sorinmarti.sphinx;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,22 +11,31 @@ import android.widget.TextView;
 import com.sorinmarti.sphinx.quiz.QuizLibrary;
 import com.sorinmarti.sphinx.quiz.QuizStatistics;
 
-public class StatisticsActivity extends AppCompatActivity {
-
-    public static final String QUIZ_STATISTICS = "QUIZ_STATISTICS";
-    public static final String USER_STATISTICS = "USER_STATISTICS";
+public class StatisticsActivity extends AppCompatActivity implements MenuFragment.OnMenuFragmentInteraction {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
-        QuizStatistics stats = QuizLibrary.getInstance().getCurrentQuizStatistics();
-        ((TextView)findViewById(R.id.txtStatistics)).setText("Dein Resultat: "+stats.getNumCorrectAnswers()+" von "+stats.getTotalNumAnswers()+" Fragen richtig beantwortet.");
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.menuTitleFragment, TitleFragment.newInstance("Statistik", "Deine Benutzerstatistik"));
+        transaction.replace(R.id.menuMenuFragment, MenuFragment.newInstance(true, true, true));
+        transaction.commit();
     }
 
-    public void goBackToMenu(View view) {
-        Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
+    @Override
+    public void onSphinxBackPressed() {
+
+    }
+
+    @Override
+    public void onSphinxExitPressed() {
+        MenuActions.quitGame( this );
+    }
+
+    @Override
+    public void onSphinxMenuPressed() {
+        MenuActions.goToMenu( this );
     }
 }

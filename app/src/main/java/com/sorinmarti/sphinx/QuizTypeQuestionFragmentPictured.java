@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,15 +28,16 @@ public class QuizTypeQuestionFragmentPictured extends QuizTypeQuestionFragment {
         TextView questionText = (TextView) view.findViewById(R.id.questionText);
         questionText.setText(question.getQuestionText());
 
-        ImageView questionPicture = (ImageView) view.findViewById(R.id.questionPicture);
-        System.out.println("Checking: "+IO_Utils.DATA_FOLDER+"_"+question.getFolderName()+" <> "+question.getQuestionPicture());
+        //ImageView questionPicture = (ImageView) view.findViewById(R.id.questionPicture);
+
         boolean exists = IO_Utils.fileExists(IO_Utils.DATA_FOLDER+"_"+question.getFolderName(), question.getQuestionPicture(), context);
 
-        System.out.println("Exists? "+exists);
         if(exists) {
             try {
                 Bitmap bitmap = IO_Utils.getLocalBitmap(IO_Utils.DATA_FOLDER+"_"+question.getFolderName(), question.getQuestionPicture(), context);
-                questionPicture.setImageBitmap(bitmap);
+                BitmapDrawable drawableLeft = new BitmapDrawable(getResources(), bitmap);
+                questionText.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -23,7 +23,8 @@
         <activity android:name=".QuestionActivity" />
         <activity android:name=".QuizSelectionActivity" />
         <activity android:name=".StatisticsActivity" />
-        <activity android:name=".UserProfileActivity"></activity>
+        <activity android:name=".UserProfileActivity" />
+        <activity android:name=".EndQuizActivity"></activity>
     </application>
 
 </manifest>

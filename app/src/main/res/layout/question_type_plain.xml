@@ -8,6 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="Her comes the question text, alright"
+        android:text="@string/question_default_question_title"
         android:textAlignment="center" />
 </LinearLayout>

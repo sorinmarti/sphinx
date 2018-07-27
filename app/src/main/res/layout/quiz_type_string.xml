@@ -9,7 +9,7 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter your answer"
+        android:text="@string/question_enter_string_value"
         android:textAlignment="center" />
 
     <EditText

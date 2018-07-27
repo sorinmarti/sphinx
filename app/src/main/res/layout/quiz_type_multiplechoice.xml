@@ -14,7 +14,7 @@
         android:layout_margin="10dp"
         android:layout_weight=".25"
         android:padding="0dp"
-        android:text="Button" />
+        android:text="@string/question_default_button_title" />
 
     <Button
         android:id="@+id/btnAnswer2"
@@ -24,7 +24,7 @@
         android:layout_margin="10dp"
         android:layout_weight=".25"
         android:padding="0dp"
-        android:text="Button" />
+        android:text="@string/question_default_button_title" />
 
     <Button
         android:id="@+id/btnAnswer3"
@@ -34,7 +34,7 @@
         android:layout_margin="10dp"
         android:layout_weight=".25"
         android:padding="0dp"
-        android:text="Button" />
+        android:text="@string/question_default_button_title" />
 
     <Button
         android:id="@+id/btnAnswer4"
@@ -44,6 +44,6 @@
         android:layout_margin="10dp"
         android:layout_weight=".25"
         android:padding="0dp"
-        android:text="Button" />
+        android:text="@string/question_default_button_title" />
 
 </LinearLayout>

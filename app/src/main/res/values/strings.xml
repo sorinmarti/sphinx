@@ -6,6 +6,8 @@
     <string name="main_btn_start_game">Spiel Starten</string>
     <string name="main_update_quizzes">Quiz-Bibliothek aktualisieren</string>
     <string name="main_btn_check_for_updates">Nach Updates Suchen</string>
+    <string name="main_btn_user_profile">Spielerprofil</string>
+    <string name="main_preparing">Sphinx wird vorbereitet</string>
 
     <!-- Menu Activity -->
     <string name="menu_title">Sphinx Menu</string>
@@ -14,14 +16,40 @@
     <string name="menu_btn_continue_quiz">Quiz Fortsetzen</string>
     <string name="menu_btn_show_statistics">Statistik Anzeigen</string>
     <string name="menu_btn_quit_game">Sphinx Beenden</string>
+    <string name="menu_btn_show_settings">Einstellungen</string>
+
+    <!-- Settings Activity -->
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_desc">Nimm hier deine Einstellungen vor.</string>
+
+    <!-- Quiz Selection Activity -->
+    <string name="quiz_list_quiz_title">Titel des Quiz</string>
+    <string name="quiz_list_quiz_subtitle">Anzahl Fragen, Kategorie</string>
+    <string name="quiz_list_quiz_description">Hier steht eine kurze Beschreibung des Quiz. Dies ist ein Platzhalter-Text mit entsprechender Länge. Noch ein bisschen länger. So.</string>
 
     <!-- Question Activity and Frangments -->
+    <string name="question_number">Frage X von Y</string>
+    <string name="question_enter_string_value">Gib die Antwort ein</string>
+    <string name="question_enter_number_value">Gib die Antwort ein</string>
+    <string name="question_default_button_title">Platzhalter</string>
+    <string name="question_default_question_title">Ist dies eine Standardfrage als Platzhalter?</string>
+
+    <!-- Quit QUIZ alert dialog -->
+    <string name="dialog_quit_quiz_title">Quiz Beenden</string>
+    <string name="dialog_quit_quiz_message">Willst du das Quiz beenden?</string>
+
+    <!-- Quit APP alert dialog-->
+    <string name="dialog_quit_title">Sphinx Beenden</string>
+    <string name="dialog_quit_message">Willst du Sphinx wirklich beenden?</string>
 
     <!-- LoadTask -->
     <string name="load_saved_quizzes">Lade gespeicherte Quizzes...</string>
-    <string name="question_number">Frage X von Y</string>
-    <string name="main_btn_user_profile">Spielerprofil</string>
-    <string name="main_preparing">Sphinx wird vorbereitet</string>
+    <string name="load_complete">Loading complete.</string>
+    <string name="dummy_img_content_desc">This is an icon or image.</string>
+    <string name="select_quiz_title">Quiz Auswählen</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

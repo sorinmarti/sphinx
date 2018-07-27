@@ -7,13 +7,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sorinmarti.sphinx.quiz.Question;
 import com.sorinmarti.sphinx.quiz.Quiz;
 import com.sorinmarti.sphinx.quiz.QuizLibrary;
 
-public class QuestionActivity extends AppCompatActivity implements QuizTypeAnswerFragment.OnFragmentInteractionListener {
+public class QuestionActivity extends AppCompatActivity implements QuizTypeAnswerFragment.OnFragmentInteractionListener, MenuFragment.OnMenuFragmentInteraction {
 
     Quiz quiz;
     Question question;
@@ -30,6 +32,10 @@ public class QuestionActivity extends AppCompatActivity implements QuizTypeAnswe
         Intent intent = getIntent();
         String quizToLoad = intent.getStringExtra(QuizSelectionActivity.QUIZ_TO_LOAD);
 
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.questionMenuFragment, MenuFragment.newInstance(false, true, true));
+        transaction.commit();
+
         quiz = QuizLibrary.getInstance().getQuiz(quizToLoad);
         QuizLibrary.getInstance().startNewQuizStatistics(quizToLoad);
 
@@ -41,8 +47,9 @@ public class QuestionActivity extends AppCompatActivity implements QuizTypeAnswe
     private void showNextQuestion() {
         question = quiz.getNextQuestion();
         if(question==null) {    // Quiz has ended: show stats
-            Intent intent = new Intent(this, StatisticsActivity.class);
-            intent.putExtra(StatisticsActivity.QUIZ_STATISTICS, quiz.getFilename());
+            Intent intent = new Intent(this, EndQuizActivity.class);
+            intent.putExtra(EndQuizActivity.QUIZ_STATISTICS, quiz.getFilename());
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             startActivity(intent);
             return;
         }
@@ -79,35 +86,8 @@ public class QuestionActivity extends AppCompatActivity implements QuizTypeAnswe
 
     @Override
     public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setTitle("Quit Quiz")
-                .setMessage("Do you really want to quit this quiz?")
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        Intent intent = new Intent(QuestionActivity.this, MenuActivity.class);
-                        startActivity(intent);
-                    }})
-                .setNegativeButton(android.R.string.no, null).show();
+        onSphinxMenuPressed();
     }
-
-    /*
-    @Override
-    public QuizStatistics.Result answerTheQuestion(Answer answer) {
-        QuizStatistics.Result result = question.solveQuestion(answer);
-        QuizLibrary.getInstance().getCurrentQuizStatistics().addQuestionResult(question, result);
-        continueQuiz();
-        return result;
-    }
-
-    @Override
-    public QuizStatistics.Result answerTheQuestion(String answer) {
-        QuizStatistics.Result result = question.solveQuestion(answer);
-        QuizLibrary.getInstance().getCurrentQuizStatistics().addQuestionResult(question, result);
-        continueQuiz();
-        return result;
-    }
-    */
 
     private void continueQuiz() {
         final Handler handler = new Handler();
@@ -117,5 +97,30 @@ public class QuestionActivity extends AppCompatActivity implements QuizTypeAnswe
                 showNextQuestion();
             }
         }, 2500);
+    }
+
+    @Override
+    public void onSphinxBackPressed() {
+        onSphinxMenuPressed();
+    }
+
+    @Override
+    public void onSphinxExitPressed() {
+        MenuActions.quitGame( this );
+    }
+
+    @Override
+    public void onSphinxMenuPressed() {
+        //TODO --> Save quiz to recontinue later
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.dialog_quit_quiz_title)
+                .setMessage(R.string.dialog_quit_quiz_message)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        MenuActions.goToMenu( QuestionActivity.this );
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
+
     }
 }

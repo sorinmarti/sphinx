@@ -1,6 +1,7 @@
 package com.sorinmarti.sphinx;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +11,7 @@ import com.sorinmarti.sphinx.listview.ActionSlideExpandableListView;
 import com.sorinmarti.sphinx.quiz.Quiz;
 import com.sorinmarti.sphinx.quiz.QuizLibrary;
 
-public class QuizSelectionActivity extends AppCompatActivity {
+public class QuizSelectionActivity extends AppCompatActivity implements MenuFragment.OnMenuFragmentInteraction{
 
     ActionSlideExpandableListView listView;
     public static final String QUIZ_TO_LOAD = "QUIZ_TO_LOAD";
@@ -21,14 +22,12 @@ public class QuizSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz_selection);
 
         listView = (ActionSlideExpandableListView)this.findViewById(R.id.listQuizzes);
-        listView.setAdapter(buildDummyData());
+        listView.setAdapter(buildQuizData());
 
-        /*
-        Quiz[] allQuizzes = QuizLibrary.getInstance().getAllQuizzes();
-
-        final QuizListArrayAdapter adapter = new QuizListArrayAdapter(this, allQuizzes);
-        listView.setAdapter(adapter);
-        */
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.selectionTitleFragment, TitleFragment.newInstance("Select a Quiz", "Whatevs"));
+        transaction.replace(R.id.selectionMenuFragment, MenuFragment.newInstance(true, true, false));
+        transaction.commit();
 
         listView.setItemActionListener(new ActionSlideExpandableListView.OnActionClickListener() {
 
@@ -47,16 +46,9 @@ public class QuizSelectionActivity extends AppCompatActivity {
         Intent intent = new Intent(this, QuestionActivity.class);
         intent.putExtra(QUIZ_TO_LOAD, quiz.getFilename());
         startActivity(intent);
-
     }
 
-    public ListAdapter buildDummyData() {
-        final int SIZE = 20;
-        String[] values = new String[SIZE];
-        for(int i=0;i<SIZE;i++) {
-            values[i] = "Item "+i;
-        }
-
+    public ListAdapter buildQuizData() {
         Quiz[] allQuizzes = QuizLibrary.getInstance().getAllQuizzes();
         return new QuizListArrayAdapter(
                 this,
@@ -66,4 +58,19 @@ public class QuizSelectionActivity extends AppCompatActivity {
         );
     }
 
+    @Override
+    public void onSphinxBackPressed() {
+        MenuActions.goToMenu( this );
+    }
+
+    @Override
+    public void onSphinxExitPressed() {
+        MenuActions.quitGame( this );
+    }
+
+    @Override
+    // The button is not shown and not used.
+    public void onSphinxMenuPressed() {
+        MenuActions.goToMenu( this );
+    }
 }

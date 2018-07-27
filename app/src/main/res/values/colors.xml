@@ -4,9 +4,10 @@
     <color name="colorDarkBorder">#33330E</color>
 
     <color name="white">#FFFFFF</color>
-   <!--
-    <color name="colorPrimary">#000000</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#FFCC00</color>
-    -->
+    <color name="color_background">#4e7845</color>
+    <!--
+     <color name="colorPrimary">#000000</color>
+     <color name="colorPrimaryDark">#000000</color>
+     <color name="colorAccent">#FFCC00</color>
+     -->
 </resources>
