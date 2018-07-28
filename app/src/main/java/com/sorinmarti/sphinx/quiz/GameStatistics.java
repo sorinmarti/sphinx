@@ -6,8 +6,8 @@ package com.sorinmarti.sphinx.quiz;
 
 public interface GameStatistics {
 
-    public String getName();
+    String getName();
 
-    public void addResult(QuizStatistics result);
+    void addResult(QuizStatistics result);
     QuizStatistics getQuizResult(String quizFilename);
 }

@@ -2,6 +2,7 @@ package com.sorinmarti.sphinx;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,6 @@ public class MenuFragment extends Fragment {
     private static final String ARG_SHOW_EXIT = "show exit option";
     private static final String ARG_SHOW_MENU = "show menu option";
 
-    private ImageButton btnBack, btnExit, btnMenu;
     private boolean showBack, showExit, showMenu;
 
    private OnMenuFragmentInteraction mListener;
@@ -57,12 +57,12 @@ public class MenuFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
-        btnBack = (ImageButton) view.findViewById(R.id.fragmentMenuBack);
-        btnExit = (ImageButton) view.findViewById(R.id.fragmentMenuExit);
-        btnMenu = (ImageButton) view.findViewById(R.id.fragmentMenuMenu);
+        ImageButton btnBack = view.findViewById(R.id.fragmentMenuBack);
+        ImageButton btnExit = view.findViewById(R.id.fragmentMenuExit);
+        ImageButton btnMenu = view.findViewById(R.id.fragmentMenuMenu);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override

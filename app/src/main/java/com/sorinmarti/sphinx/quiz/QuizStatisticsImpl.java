@@ -10,11 +10,11 @@ import java.util.Map;
 class QuizStatisticsImpl implements QuizStatistics {
 
     private final String correspondingQuizName;
-    private Map<Question, QuestionStatistics> questionStats;
+    private final Map<Question, QuestionStatistics> questionStats;
 
     public QuizStatisticsImpl(String quizName) {
         this.correspondingQuizName = quizName;
-        this.questionStats = new HashMap<Question, QuestionStatistics>();
+        this.questionStats = new HashMap<>();
     }
 
     @Override

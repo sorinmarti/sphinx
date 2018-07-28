@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -16,8 +15,8 @@ import com.sorinmarti.sphinx.quiz.QuizCreator;
 
 public class MainActivity extends AppCompatActivity {
 
-    ProgressBar updateBar;
-    TextView txtUpdate;
+    private ProgressBar updateBar;
+    private TextView txtUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
         //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        updateBar = (ProgressBar)findViewById(R.id.barMainUpdate);
+        updateBar = findViewById(R.id.barMainUpdate);
 
-        txtUpdate = (TextView)findViewById(R.id.txtUpdateStatus);
+        txtUpdate = findViewById(R.id.txtUpdateStatus);
 
         final LoadTask loadTask = new LoadTask(getBaseContext(),
                 txtUpdate,
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         // TODO The internet update task can remain as is, It would need further options to select new quizzes, maybe.
     }
 
-    public void showMenu() {
+    private void showMenu() {
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -47,11 +46,11 @@ public class MainActivity extends AppCompatActivity {
 
     class LoadTask extends AsyncTask<String, String, String> {
 
-        private Context context;
-        private TextView statusText;
-        private ProgressBar progressBar;
+        private final Context context;
+        private final TextView statusText;
+        private final ProgressBar progressBar;
 
-        public LoadTask(Context context, TextView statusText, ProgressBar progressBar) {
+        LoadTask(Context context, TextView statusText, ProgressBar progressBar) {
             this.context = context;
             this.statusText = statusText;
             this.progressBar = progressBar;

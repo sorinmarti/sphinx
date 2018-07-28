@@ -13,7 +13,7 @@ import com.sorinmarti.sphinx.quiz.QuizLibrary;
 
 public class QuizSelectionActivity extends AppCompatActivity implements MenuFragment.OnMenuFragmentInteraction{
 
-    ActionSlideExpandableListView listView;
+    private ActionSlideExpandableListView listView;
     public static final String QUIZ_TO_LOAD = "QUIZ_TO_LOAD";
 
     @Override
@@ -21,7 +21,7 @@ public class QuizSelectionActivity extends AppCompatActivity implements MenuFrag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_selection);
 
-        listView = (ActionSlideExpandableListView)this.findViewById(R.id.listQuizzes);
+        listView = this.findViewById(R.id.listQuizzes);
         listView.setAdapter(buildQuizData());
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -48,7 +48,7 @@ public class QuizSelectionActivity extends AppCompatActivity implements MenuFrag
         startActivity(intent);
     }
 
-    public ListAdapter buildQuizData() {
+    private ListAdapter buildQuizData() {
         Quiz[] allQuizzes = QuizLibrary.getInstance().getAllQuizzes();
         return new QuizListArrayAdapter(
                 this,

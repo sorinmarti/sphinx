@@ -12,7 +12,7 @@ import java.util.Map;
 public class QuizLibrary {
 
     private static QuizLibrary instance = null;
-    private Map<String, Quiz> savedQuiz;
+    private final Map<String, Quiz> savedQuiz;
     private QuizStatistics currentQuizStatistics;
     private GameStatistics gameStatistics;
 
@@ -24,7 +24,7 @@ public class QuizLibrary {
     }
 
     private QuizLibrary() {
-        savedQuiz = new HashMap<String, Quiz>();
+        savedQuiz = new HashMap<>();
         gameStatistics = new GameStatisticsImpl("XXX");      // TODO load it from assets
     }
 
@@ -60,7 +60,7 @@ public class QuizLibrary {
     }
 
     public Quiz[] getAllQuizzes() {
-        List<Quiz> list = new ArrayList<Quiz>(savedQuiz.values());
+        List<Quiz> list = new ArrayList<>(savedQuiz.values());
         Quiz[] array = new Quiz[list.size()];
         array = list.toArray(array);
         return array;

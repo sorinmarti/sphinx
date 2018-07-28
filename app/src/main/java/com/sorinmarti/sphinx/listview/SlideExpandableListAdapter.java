@@ -13,8 +13,8 @@ import com.sorinmarti.sphinx.R;
  * @author tjerk
  */
 public class SlideExpandableListAdapter extends AbstractSlideExpandableListAdapter {
-	private int toggle_button_id;
-	private int expandable_view_id;
+	private final int toggle_button_id;
+	private final int expandable_view_id;
 
 	SlideExpandableListAdapter(ListAdapter wrapped, int toggle_button_id, int expandable_view_id) {
 		super(wrapped);

@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,20 +17,20 @@ import com.sorinmarti.sphinx.quiz.QuizLibrary;
 
 public class QuestionActivity extends AppCompatActivity implements QuizTypeAnswerFragment.OnFragmentInteractionListener, MenuFragment.OnMenuFragmentInteraction {
 
-    Quiz quiz;
-    Question question;
+    private Quiz quiz;
+    private Question question;
 
-    TextView txtProgress;
-    ProgressBar countDownBar;
-    CountdownTask countdownTask;
+    private TextView txtProgress;
+    private ProgressBar countDownBar;
+    private CountdownTask countdownTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
-        txtProgress = (TextView)findViewById(R.id.txtQuestionXofY);
-        countDownBar = (ProgressBar)findViewById(R.id.countdownBar);
+        txtProgress = findViewById(R.id.txtQuestionXofY);
+        countDownBar = findViewById(R.id.countdownBar);
 
         Intent intent = getIntent();
         String quizToLoad = intent.getStringExtra(QuizSelectionActivity.QUIZ_TO_LOAD);

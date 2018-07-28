@@ -9,7 +9,7 @@ import android.content.SharedPreferences;
  */
 public class SettingsManager {
 
-    private SharedPreferences sharedPrefs;
+    private final SharedPreferences sharedPrefs;
 
     public SettingsManager( Activity activity) {
         sharedPrefs = activity.getPreferences(Context.MODE_PRIVATE);
@@ -22,6 +22,6 @@ public class SettingsManager {
     public void setUsername(String username) {
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("user_name", username);
-        editor.commit();
+        editor.apply();
     }
 }

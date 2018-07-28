@@ -9,7 +9,7 @@ public abstract class AbstractQuiz implements Quiz {
     private String picture;
     private String description;
 
-    protected AbstractQuiz(String filename) {
+    AbstractQuiz(String filename) {
         this.filename = filename;
         this.title = "";
         this.description = "";

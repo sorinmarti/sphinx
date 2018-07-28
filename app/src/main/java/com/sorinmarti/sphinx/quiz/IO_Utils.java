@@ -4,17 +4,12 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -45,7 +40,7 @@ public class IO_Utils {
         saveFile(folderName, filename, "", context);
     }
 
-    public static void saveFile(String folderName, String filename, String contents, Context context) throws Exception {
+    private static void saveFile(String folderName, String filename, String contents, Context context) throws Exception {
         ContextWrapper cw = new ContextWrapper(context);
         File folder = cw.getDir(folderName, Context.MODE_PRIVATE);
         if (!folder.exists()) {
@@ -86,13 +81,10 @@ public class IO_Utils {
         String[] files = folder.list(new FilenameFilter() {
             @Override
             public boolean accept(File file, String filename) {
-                if(filename.equals(".") || filename.equals("..")) {
+                if (filename.equals(".") || filename.equals("..")) {
                     return false;
                 }
-                if(ending.equals("")) {
-                    return true;
-                }
-                return filename.endsWith(ending);
+                return ending.equals("") || filename.endsWith(ending);
             }
         });
         return files;
@@ -101,11 +93,11 @@ public class IO_Utils {
 
     public static String getRemoteFile(String urlString) throws Exception {
         List<String> lines = getRemoteFileLineList(urlString);
-        String fileText = "";
+        StringBuilder fileText = new StringBuilder();
         for(String line : lines) {
-            fileText += line+"\n";
+            fileText.append(line).append("\n");
         }
-        return fileText;
+        return fileText.toString();
     }
 
     public static List<String> getRemoteFileLineList(String urlString) throws Exception {
@@ -139,11 +131,11 @@ public class IO_Utils {
         } catch (Exception e) {
             throw e;
         }
-        String fileText = "";
+        StringBuilder fileText = new StringBuilder();
         for(String line : lines) {
-            fileText += line+"\n";
+            fileText.append(line).append("\n");
         }
-        return fileText;
+        return fileText.toString();
     }
 
     public static List<String> getLocalFileLineList(String folderName, String filename, Context context) throws Exception {
@@ -185,12 +177,8 @@ public class IO_Utils {
 
             // Convert the BufferedInputStream to a Bitmap
             Bitmap bMap = BitmapFactory.decodeStream(buf);
-            if (in != null) {
-                in.close();
-            }
-            if (buf != null) {
-                buf.close();
-            }
+            in.close();
+            buf.close();
 
             saveImage(folderName, fileName, bMap, context);
 
@@ -199,7 +187,7 @@ public class IO_Utils {
         }
     }
 
-   public static void saveImage(String folderName, String fileName, Bitmap bitmap, Context context) {
+   private static void saveImage(String folderName, String fileName, Bitmap bitmap, Context context) {
        ContextWrapper cw = new ContextWrapper(context);
        File directory = cw.getDir(folderName, Context.MODE_PRIVATE);
        if (!directory.exists()) {
@@ -233,10 +221,10 @@ public class IO_Utils {
 
 
         //convert the byte to hex format method 2
-        StringBuffer hexString = new StringBuffer();
-        for (int i=0;i<byteData.length;i++) {
-            String hex=Integer.toHexString(0xff & byteData[i]);
-            if(hex.length()==1) hexString.append('0');
+        StringBuilder hexString = new StringBuilder();
+        for (byte aByteData : byteData) {
+            String hex = Integer.toHexString(0xff & aByteData);
+            if (hex.length() == 1) hexString.append('0');
             hexString.append(hex);
         }
         return hexString.toString();

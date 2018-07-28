@@ -1,7 +1,6 @@
 package com.sorinmarti.sphinx;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.app.AlertDialog;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -15,8 +14,8 @@ import com.sorinmarti.sphinx.quiz.SettingsManager;
 
 public class UserProfileActivity extends AppCompatActivity implements MenuFragment.OnMenuFragmentInteraction {
 
-    SettingsManager manager;
-    TextView usernameView;
+    private SettingsManager manager;
+    private TextView usernameView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,7 @@ public class UserProfileActivity extends AppCompatActivity implements MenuFragme
         transaction.commit();
 
         manager = new SettingsManager( UserProfileActivity.this );
-        usernameView = (TextView) findViewById(R.id.txtUsername);
+        usernameView = findViewById(R.id.txtUsername);
         usernameView.setText( manager.getUsername() );
     }
 

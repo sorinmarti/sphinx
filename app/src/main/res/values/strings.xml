@@ -43,7 +43,7 @@
     <string name="dialog_quit_message">Willst du Sphinx wirklich beenden?</string>
 
     <!-- LoadTask -->
-    <string name="load_saved_quizzes">Lade gespeicherte Quizzes...</string>
+    <string name="load_saved_quizzes">Lade gespeicherte Quizzes…</string>
     <string name="load_complete">Loading complete.</string>
     <string name="dummy_img_content_desc">This is an icon or image.</string>
     <string name="select_quiz_title">Quiz Auswählen</string>

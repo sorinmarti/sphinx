@@ -13,11 +13,11 @@ import java.util.Random;
 public class QuizDynamicImpl extends AbstractQuiz {
 
     private String question;
-    private List<String> imageResources = new ArrayList<>();
-    private Map<String, String> answers = new HashMap<>();
+    private final List<String> imageResources = new ArrayList<>();
+    private final Map<String, String> answers = new HashMap<>();
     private int lastQuestionIdx = 0;
 
-    protected QuizDynamicImpl(String filename) {
+    QuizDynamicImpl(String filename) {
         super(filename);
     }
 

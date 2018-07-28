@@ -11,7 +11,7 @@ import java.util.List;
 class QuizImpl extends AbstractQuiz {
 
 
-    private List<Question> questions;
+    private final List<Question> questions;
     private int lastQuestionIdx = 0;
 
     public QuizImpl(String filename) {

@@ -2,6 +2,7 @@ package com.sorinmarti.sphinx;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,7 @@ import com.sorinmarti.sphinx.quiz.Question;
 
 
 public abstract class QuizTypeAnswerFragment extends Fragment {
-    protected Question question;
+    Question question;
 
     private OnFragmentInteractionListener mListener;
 
@@ -37,9 +38,7 @@ public abstract class QuizTypeAnswerFragment extends Fragment {
                 break;
         }
 
-        if(fragment!=null) {
-            fragment.setQuestion(question);
-        }
+        fragment.setQuestion(question);
 
         return fragment;
     }
@@ -47,7 +46,7 @@ public abstract class QuizTypeAnswerFragment extends Fragment {
     protected abstract void setUpListeners(View view);
     protected abstract int getLayoutId();
 
-    protected void fireQuestionAnswered() {
+    void fireQuestionAnswered() {
         if( mListener != null) {
             mListener.questionAnswered();
         }
@@ -59,7 +58,7 @@ public abstract class QuizTypeAnswerFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(getLayoutId(), container, false);
 
         setUpListeners( fragmentView );

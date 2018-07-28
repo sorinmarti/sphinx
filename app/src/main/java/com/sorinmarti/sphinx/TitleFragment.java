@@ -2,6 +2,7 @@ package com.sorinmarti.sphinx;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,6 @@ public class TitleFragment extends Fragment {
     private static final String ARG_TITLE = "title param";
     private static final String ARG_SUBTITLE = "subtitle param";
 
-    private TextView viewTitle, viewSubtitle;
     private String title, subtitle;
 
     public TitleFragment() {
@@ -49,10 +49,10 @@ public class TitleFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_title, container, false);
-        viewTitle = (TextView) view.findViewById(R.id.fragmentTitleTitle);
-        viewSubtitle = (TextView) view.findViewById(R.id.fragmentTitleDescription);
+        TextView viewTitle = view.findViewById(R.id.fragmentTitleTitle);
+        TextView viewSubtitle = view.findViewById(R.id.fragmentTitleDescription);
 
         viewTitle.setText( title );
         viewSubtitle.setText( subtitle );

@@ -3,16 +3,15 @@ package com.sorinmarti.sphinx;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 /**
  * Created by SOMA on 28.07.2018.
  */
-public class CountdownTask extends AsyncTask<Integer, Integer, Integer> {
+class CountdownTask extends AsyncTask<Integer, Integer, Integer> {
 
-    Context context;
-    ProgressBar progressBar;
-    int seconds = 5;
+    private final Context context;
+    private final ProgressBar progressBar;
+    private final int seconds = 5;
 
     public CountdownTask(Context context, ProgressBar progressBar) {
         this.context = context;

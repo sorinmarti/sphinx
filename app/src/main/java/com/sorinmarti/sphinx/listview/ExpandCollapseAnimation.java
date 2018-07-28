@@ -13,13 +13,13 @@ import android.widget.LinearLayout;
  * @auther tjerk
  * @date 6/9/12 4:58 PM
  */
-public class ExpandCollapseAnimation extends Animation {
-	private View mAnimatedView;
-	private int mEndHeight;
-	private int mType;
+class ExpandCollapseAnimation extends Animation {
+	private final View mAnimatedView;
+	private final int mEndHeight;
+	private final int mType;
 	public final static int COLLAPSE = 1;
 	public final static int EXPAND = 0;
-	private LinearLayout.LayoutParams mLayoutParams;
+	private final LinearLayout.LayoutParams mLayoutParams;
 
 	/**
 	 * Initializes expand collapse animation, has two types, collapse (1) and expand (0).

@@ -6,6 +6,6 @@ package com.sorinmarti.sphinx.quiz;
 
 public interface Answer {
 
-    public String getAnswerText();
-    public boolean isCorrect();
+    String getAnswerText();
+    boolean isCorrect();
 }

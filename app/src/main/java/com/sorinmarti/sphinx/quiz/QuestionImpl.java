@@ -14,13 +14,13 @@ class QuestionImpl implements Question {
     private Question.AnswerType type;
     private String text;
     private String picture;
-    private String folderName;
-    private List<Answer> answers;
+    private final String folderName;
+    private final List<Answer> answers;
     private String answerText;
 
     public QuestionImpl(String folderName) {
         this.folderName = folderName;
-        answers = new ArrayList<Answer>();
+        answers = new ArrayList<>();
     }
 
     @Override

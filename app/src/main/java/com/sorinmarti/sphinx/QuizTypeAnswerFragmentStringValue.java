@@ -18,7 +18,7 @@ public class QuizTypeAnswerFragmentStringValue extends QuizTypeAnswerFragment {
 
     @Override
     protected void setUpListeners(final View view) {
-        final EditText editText = (EditText)view.findViewById(R.id.txtAnswerString);
+        final EditText editText = view.findViewById(R.id.txtAnswerString);
 
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

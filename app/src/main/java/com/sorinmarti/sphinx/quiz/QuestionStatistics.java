@@ -6,8 +6,8 @@ package com.sorinmarti.sphinx.quiz;
 
 public interface QuestionStatistics {
 
-    public void addQuestionResult(QuizStatistics.Result result);
+    void addQuestionResult(QuizStatistics.Result result);
 
-    public int getNumberOfWrongAnswers();
-    public int getNumberOfRightAnswers();
+    int getNumberOfWrongAnswers();
+    int getNumberOfRightAnswers();
 }

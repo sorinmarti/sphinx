@@ -2,14 +2,9 @@ package com.sorinmarti.sphinx.listview;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ListAdapter;
-import android.widget.TextView;
-
-import com.sorinmarti.sphinx.R;
 
 /**
  * A more specific expandable listview in which the expandable area
@@ -54,7 +49,7 @@ public class ActionSlideExpandableListView extends SlideExpandableListView {
 		 * @param clickedView the view clicked
 		 * @param position the position in the listview
 		 */
-		public void onClick(View itemView, View clickedView, int position);
+        void onClick(View itemView, View clickedView, int position);
 	}
 
 	public void setAdapter(ListAdapter adapter) {

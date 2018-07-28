@@ -10,11 +10,11 @@ import java.util.List;
 class GameStatisticsImpl implements GameStatistics {
 
     private final String name;
-    private List<QuizStatistics> results;
+    private final List<QuizStatistics> results;
 
     public GameStatisticsImpl(String name) {
         this.name = name;
-        this.results = new ArrayList<QuizStatistics>();
+        this.results = new ArrayList<>();
     }
 
     @Override

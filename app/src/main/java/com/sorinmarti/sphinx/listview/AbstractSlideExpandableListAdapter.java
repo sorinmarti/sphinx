@@ -61,7 +61,7 @@ public abstract class AbstractSlideExpandableListAdapter extends WrapperListAdap
 	*/
 	private ViewGroup parent;
 
-	public AbstractSlideExpandableListAdapter(ListAdapter wrapped) {
+	AbstractSlideExpandableListAdapter(ListAdapter wrapped) {
 		super(wrapped);
 	}
 
@@ -87,7 +87,7 @@ public abstract class AbstractSlideExpandableListAdapter extends WrapperListAdap
 	 * Interface for callback to be invoked whenever an item is expanded or
 	 * collapsed in the list view.
 	 */
-	public interface OnItemExpandCollapseListener {
+    interface OnItemExpandCollapseListener {
 		/**
 		 * Called when an item is expanded.
 		 * 
@@ -96,7 +96,7 @@ public abstract class AbstractSlideExpandableListAdapter extends WrapperListAdap
 		 * @param position
 		 *            the position in the list view
 		 */
-		public void onExpand(View itemView, int position);
+        void onExpand(View itemView, int position);
 
 		/**
 		 * Called when an item is collapsed.
@@ -106,7 +106,7 @@ public abstract class AbstractSlideExpandableListAdapter extends WrapperListAdap
 		 * @param position
 		 *            the position in the list view
 		 */
-		public void onCollapse(View itemView, int position);
+        void onCollapse(View itemView, int position);
 
 	}
 
@@ -147,7 +147,7 @@ public abstract class AbstractSlideExpandableListAdapter extends WrapperListAdap
 	 * @ensure return!=null
 	 * @return a child of parent which is a button
 	 */
-	public abstract View getExpandToggleButton(View parent);
+	protected abstract View getExpandToggleButton(View parent);
 
 	/**
 	 * This method is used to get the view that will be hidden
@@ -165,7 +165,7 @@ public abstract class AbstractSlideExpandableListAdapter extends WrapperListAdap
 	 * @return a child of parent which is a view (or often ViewGroup)
 	 *  that can be collapsed and expanded
 	 */
-	public abstract View getExpandableView(View parent);
+	protected abstract View getExpandableView(View parent);
 
 	/**
 	 * Gets the duration of the collapse animation in ms.
@@ -173,7 +173,7 @@ public abstract class AbstractSlideExpandableListAdapter extends WrapperListAdap
 	 *
 	 * @return the duration of the anim in ms
 	 */
-	public int getAnimationDuration() {
+    private int getAnimationDuration() {
 		return animationDuration;
 	}
 	/**
@@ -195,11 +195,11 @@ public abstract class AbstractSlideExpandableListAdapter extends WrapperListAdap
 	 * 
 	 * @return boolean True if there is currently an item expanded, otherwise false
 	 */
-	public boolean isAnyItemExpanded() {
+    private boolean isAnyItemExpanded() {
 		return (lastOpenPosition != -1) ? true : false;
 	}
 
-	public void enableFor(View parent, int position) {
+	private void enableFor(View parent, int position) {
 		View more = getExpandToggleButton(parent);
 		View itemToolbar = getExpandableView(parent);
 		itemToolbar.measure(parent.getWidth(), parent.getHeight());
@@ -418,8 +418,8 @@ public abstract class AbstractSlideExpandableListAdapter extends WrapperListAdap
 	 * The actual state class
 	 */
 	static class SavedState extends View.BaseSavedState {
-		public BitSet openItems = null;
-		public int lastOpenPosition = -1;
+		BitSet openItems = null;
+		int lastOpenPosition = -1;
 
 		SavedState(Parcelable superState) {
 			super(superState);

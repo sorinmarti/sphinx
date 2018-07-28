@@ -1,6 +1,5 @@
 package com.sorinmarti.sphinx;
 
-import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
 
@@ -19,10 +18,10 @@ public class QuizTypeAnswerFragmentMultipleChoice extends QuizTypeAnswerFragment
         if(question.getType()== Question.AnswerType.MULTIPLE_CHOICE) {
             final Button[] buttons = new Button[4];
 
-            buttons[0] = (Button) view.findViewById(R.id.btnAnswer1);
-            buttons[1] = (Button) view.findViewById(R.id.btnAnswer2);
-            buttons[2] = (Button) view.findViewById(R.id.btnAnswer3);
-            buttons[3] = (Button) view.findViewById(R.id.btnAnswer4);
+            buttons[0] = view.findViewById(R.id.btnAnswer1);
+            buttons[1] = view.findViewById(R.id.btnAnswer2);
+            buttons[2] = view.findViewById(R.id.btnAnswer3);
+            buttons[3] = view.findViewById(R.id.btnAnswer4);
 
             for(int i=0;i<4;i++) {
                 if(question.getNumAnswers()>i) {

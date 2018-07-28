@@ -17,21 +17,21 @@ public interface Question {
         ENTER_STRING_VALUE
     }
 
-    public QuestionType getQuestionType();
+    QuestionType getQuestionType();
 
-    public AnswerType getType();
-    public String getQuestionText();
-    public String getQuestionPicture();
-    public String getFolderName();
+    AnswerType getType();
+    String getQuestionText();
+    String getQuestionPicture();
+    String getFolderName();
 
-    public Answer[] getAnswers();
-    public Answer getAnswer(int number);
+    Answer[] getAnswers();
+    Answer getAnswer(int number);
 
-    public int getNumAnswers();
-    public void setAnswerText(String answerText);
+    int getNumAnswers();
+    void setAnswerText(String answerText);
 
-    public QuizStatistics.Result solveQuestion(Answer answer);
-    public QuizStatistics.Result solveQuestion(String answer);
+    QuizStatistics.Result solveQuestion(Answer answer);
+    QuizStatistics.Result solveQuestion(String answer);
 
-    public void shuffleAnswers();
+    void shuffleAnswers();
 }

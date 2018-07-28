@@ -10,7 +10,7 @@ public interface QuizStatistics {
         CORRECT_ANSWER("Correct Answer"),
         WRONG_ANSWER("Incorrect Answer");
 
-        String text;
+        final String text;
 
         Result(String text) {
             this.text = text;
@@ -20,11 +20,11 @@ public interface QuizStatistics {
         }
     }
 
-    public String getCorrespondingQuizName();
-    public void addQuestionResult(Question question, Result result);
-    public QuestionStatistics getQuestionResult(Question question);
+    String getCorrespondingQuizName();
+    void addQuestionResult(Question question, Result result);
+    QuestionStatistics getQuestionResult(Question question);
 
-    public int getNumCorrectAnswers();
-    public int getNumIncorrectAnswers();
-    public int getTotalNumAnswers();
+    int getNumCorrectAnswers();
+    int getNumIncorrectAnswers();
+    int getTotalNumAnswers();
 }

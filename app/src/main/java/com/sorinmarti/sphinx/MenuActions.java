@@ -8,7 +8,7 @@ import android.content.Intent;
 /**
  * Created by SOMA on 27.07.2018.
  */
-public class MenuActions {
+class MenuActions {
 
     public static void quitGame(final Activity activity) {
         new AlertDialog.Builder(activity)

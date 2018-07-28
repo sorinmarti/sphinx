@@ -134,32 +134,32 @@ public class QuizUpdater {
                 case TYPE_DOWNLOAD:
                 case TYPE_UPDATE:
                     String[] pathParts = filename.split("/");
-                    String folder = IO_Utils.DATA_FOLDER;
+                    StringBuilder folder = new StringBuilder(IO_Utils.DATA_FOLDER);
                     if(pathParts.length>1) {
                         for(int i=0;i<(pathParts.length-1);i++) {
-                            folder += "_" + pathParts[i];
+                            folder.append("_").append(pathParts[i]);
                         }
                     }
                     String localFilename =  pathParts[pathParts.length-1];
                     if(localFilename.endsWith("jpg") || localFilename.endsWith("jpeg")) {
-                        IO_Utils.downloadImage(IO_Utils.DOWNLOAD_BASE_URL+filename, folder, localFilename, context);
+                        IO_Utils.downloadImage(IO_Utils.DOWNLOAD_BASE_URL+filename, folder.toString(), localFilename, context);
                     }
                     else {
-                        IO_Utils.downloadAndSaveFile(folder, localFilename, IO_Utils.DOWNLOAD_BASE_URL+filename, context);
+                        IO_Utils.downloadAndSaveFile(folder.toString(), localFilename, IO_Utils.DOWNLOAD_BASE_URL+filename, context);
                     }
                     break;
             }
         }
 
-        public static UpdateAction createUpdateAction(String filename) {
+        static UpdateAction createUpdateAction(String filename) {
             return new UpdateAction(TYPE_UPDATE, filename);
         }
 
-        public static UpdateAction createDownloadAction(String filename) {
+        static UpdateAction createDownloadAction(String filename) {
             return new UpdateAction(TYPE_DOWNLOAD, filename);
         }
 
-        public static UpdateAction createUpToDateAction(String filename) {
+        static UpdateAction createUpToDateAction(String filename) {
             return new UpdateAction(TYPE_UP_TO_DATE, filename);
         }
     }

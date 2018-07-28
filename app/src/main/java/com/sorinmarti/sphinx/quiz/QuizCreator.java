@@ -6,15 +6,11 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringReader;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.Objects;
 
 /**
  * Created by SOMA on 06.10.2017.
@@ -25,11 +21,9 @@ public class QuizCreator {
     public static Quiz createFromXMLString(String filename, Context context) throws Exception {
         String fileContents = IO_Utils.getLocalFile(IO_Utils.DATA_FOLDER, filename, context);
         Quiz quiz = parse(filename, fileContents);
-        quiz.shuffleQuestions();
+        Objects.requireNonNull(quiz).shuffleQuestions();
 
-        if(quiz != null) {
-            QuizLibrary.getInstance().saveQuiz( quiz );
-        }
+        QuizLibrary.getInstance().saveQuiz( quiz );
         return quiz;
     }
 
@@ -166,7 +160,7 @@ public class QuizCreator {
                         if (tagName.equalsIgnoreCase("quiz")) {
                             quiz = new QuizImpl(filename);
                         } else if(tagName.equalsIgnoreCase("question")) {
-                            question = new QuestionImpl(quiz.getFolderName());
+                            question = new QuestionImpl(Objects.requireNonNull(quiz).getFolderName());
                             String answerType = parser.getAttributeValue(null, "type");
                             switch(answerType) {
                                 case "MULTIPLE_CHOICE":
@@ -209,25 +203,25 @@ public class QuizCreator {
                         break;
                     case XmlPullParser.END_TAG:
                         if (tagName.equalsIgnoreCase("question")) {
-                            quiz.addQuestion(question);
+                            Objects.requireNonNull(quiz).addQuestion(question);
                         } else if (tagName.equalsIgnoreCase("answer")) {
-                            question.addAnswer(answer);
+                            Objects.requireNonNull(question).addAnswer(answer);
                         } else if (tagName.equalsIgnoreCase("title")) {
                             switch(nodeLevel) {
                                 case 0: // quiz
-                                    quiz.setQuizTitle(text);
+                                    Objects.requireNonNull(quiz).setQuizTitle(text);
                                     break;
                                 case 1: // question
                                     question.setQuestionText(text);
                                     break;
                                 case 2: // answer
-                                    answer.setAnswerText(text);
+                                    Objects.requireNonNull(answer).setAnswerText(text);
                                     break;
                             }
                         } else if(tagName.equalsIgnoreCase("picture")) {
                             switch(nodeLevel) {
                                 case 0: // quiz
-                                    quiz.setQuizPicture(text);
+                                    Objects.requireNonNull(quiz).setQuizPicture(text);
                                     break;
                                 case 1: // question
                                     question.setPicture(text);
@@ -237,7 +231,7 @@ public class QuizCreator {
                                     break;
                             }
                         } else if (tagName.equalsIgnoreCase("description")) {
-                            quiz.setQuizDescription(text);
+                            Objects.requireNonNull(quiz).setQuizDescription(text);
                         } else if (tagName.equalsIgnoreCase("solution")) {
                             switch(nodeLevel) {
                                 case 1: // question

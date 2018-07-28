@@ -1,25 +1,8 @@
 package com.sorinmarti.sphinx;
 
-import android.content.Context;
 //import android.support.test.InstrumentationRegistry;
 //import android.support.test.runner.AndroidJUnit4;
 
-import com.sorinmarti.sphinx.quiz.Answer;
-import com.sorinmarti.sphinx.quiz.GameStatistics;
-import com.sorinmarti.sphinx.quiz.Question;
-import com.sorinmarti.sphinx.quiz.QuestionStatistics;
-import com.sorinmarti.sphinx.quiz.Quiz;
-import com.sorinmarti.sphinx.quiz.QuizCreator;
-import com.sorinmarti.sphinx.quiz.QuizLibrary;
-import com.sorinmarti.sphinx.quiz.QuizStatistics;
-import com.sorinmarti.sphinx.quiz.QuizUpdater;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import java.io.IOException;
-
-import static org.junit.Assert.*;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -27,7 +10,7 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 //@RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedTest {
+class ExampleInstrumentedTest {
     /*
     private String quizFilename = "test.quiz";
 

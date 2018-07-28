@@ -1,23 +1,21 @@
 package com.sorinmarti.sphinx.quiz;
 
-import java.util.List;
-
 /**
  * Created by SOMA on 06.10.2017.
  */
 
 public interface Quiz {
 
-    public String getQuizTitle();
-    public String getQuizPicture();
-    public String getQuizDescription();
+    String getQuizTitle();
+    String getQuizPicture();
+    String getQuizDescription();
 
-    public String getFilename();
-    public String getFolderName();
-    public Question getNextQuestion();
+    String getFilename();
+    String getFolderName();
+    Question getNextQuestion();
 
-    public int getCurrentQuestionNumber();
-    public int getTotalQuestionNumber();
+    int getCurrentQuestionNumber();
+    int getTotalQuestionNumber();
 
-    public void shuffleQuestions();
+    void shuffleQuestions();
 }

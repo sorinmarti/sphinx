@@ -7,7 +7,6 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.content.Context;
-import android.widget.WrapperListAdapter;
 
 /**
  * Simple subclass of listview which does nothing more than wrap
@@ -34,11 +33,8 @@ class SlideExpandableListView extends ListView {
 	 * @return true if a view was collapsed, false if there was no open view.
 	 */
 	public boolean collapse() {
-		if(adapter!=null) {
-			return adapter.collapseLastOpen();
-		}
-		return false;
-	}
+        return adapter != null && adapter.collapseLastOpen();
+    }
 
     public void setAdapter(ListAdapter adapter) {
         this.adapter = new SlideExpandableListAdapter(adapter);

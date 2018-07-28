@@ -1,18 +1,13 @@
 package com.sorinmarti.sphinx;
 
 import android.content.Context;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.sorinmarti.sphinx.quiz.Answer;
 import com.sorinmarti.sphinx.quiz.IO_Utils;
-import com.sorinmarti.sphinx.quiz.Question;
-import com.sorinmarti.sphinx.quiz.Quiz;
 import com.sorinmarti.sphinx.quiz.QuizCreator;
 import com.sorinmarti.sphinx.quiz.QuizUpdater;
 
@@ -22,12 +17,12 @@ import java.util.List;
  * Created by SOMA on 21.10.2017.
  */
 
-public class UpdateTask extends AsyncTask<String, String, String> {
+class UpdateTask extends AsyncTask<String, String, String> {
 
-    Context context;
-    TextView statusText;
-    ProgressBar progressBar;
-    Button button;
+    private final Context context;
+    private final TextView statusText;
+    private final ProgressBar progressBar;
+    private final Button button;
 
     public UpdateTask(Context context, TextView statusText, ProgressBar progressBar, Button button) {
         this.context = context;
