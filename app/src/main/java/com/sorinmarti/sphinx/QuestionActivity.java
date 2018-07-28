@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,8 @@ public class QuestionActivity extends AppCompatActivity implements QuizTypeAnswe
     Question question;
 
     TextView txtProgress;
+    ProgressBar countDownBar;
+    CountdownTask countdownTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +31,13 @@ public class QuestionActivity extends AppCompatActivity implements QuizTypeAnswe
         setContentView(R.layout.activity_question);
 
         txtProgress = (TextView)findViewById(R.id.txtQuestionXofY);
+        countDownBar = (ProgressBar)findViewById(R.id.countdownBar);
 
         Intent intent = getIntent();
         String quizToLoad = intent.getStringExtra(QuizSelectionActivity.QUIZ_TO_LOAD);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.questionMenuFragment, MenuFragment.newInstance(false, true, true));
+        transaction.replace(R.id.questionMenuFragment, MenuFragment.newInstance(false, false, true));
         transaction.commit();
 
         quiz = QuizLibrary.getInstance().getQuiz(quizToLoad);
@@ -54,6 +58,18 @@ public class QuestionActivity extends AppCompatActivity implements QuizTypeAnswe
             return;
         }
 
+        // Valid question: create countdown
+        countdownTask = new CountdownTask(this, countDownBar) {
+            @Override
+            protected void onPostExecute(Integer result) {
+                Toast.makeText(QuestionActivity.this, "Out of time!", Toast.LENGTH_SHORT).show();
+                showNextQuestion();
+                return;
+            }
+        };
+        countdownTask.execute();
+
+
         // Valid question; which question type?
         QuizTypeQuestionFragment questionFragment = QuizTypeQuestionFragment.newInstance(question, getBaseContext());
 
@@ -68,19 +84,18 @@ public class QuestionActivity extends AppCompatActivity implements QuizTypeAnswe
         FragmentTransaction questionFt = getSupportFragmentManager().beginTransaction();
         questionFt.replace(R.id.question_area, questionFragment);
         questionFt.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        questionFt.addToBackStack(null);
         questionFt.commit();
 
         // 3rd Element: the answer
         FragmentTransaction answerFt = getSupportFragmentManager().beginTransaction();
         answerFt.replace(R.id.answer_area, answerFragment);
         answerFt.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        answerFt.addToBackStack(null);
         answerFt.commit();
     }
 
     @Override
     public void questionAnswered() {
+        countdownTask.cancel(true);
         continueQuiz();
     }
 

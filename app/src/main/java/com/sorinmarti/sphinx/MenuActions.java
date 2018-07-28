@@ -29,5 +29,24 @@ public class MenuActions {
     public static void goToMenu(final Activity activity) {
         Intent intent = new Intent(activity, MenuActivity.class);
         activity.startActivity(intent);
+        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    public static void goToUserProfile(final Activity activity) {
+        Intent intent = new Intent(activity, UserProfileActivity.class);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    public static void goToStatistics(final Activity activity) {
+        Intent intent = new Intent(activity, StatisticsActivity.class);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    public static void goToQuizSelection(final Activity activity) {
+        Intent intent = new Intent(activity, QuizSelectionActivity.class);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

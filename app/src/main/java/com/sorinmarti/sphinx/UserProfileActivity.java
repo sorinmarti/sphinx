@@ -25,7 +25,7 @@ public class UserProfileActivity extends AppCompatActivity implements MenuFragme
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.userprofileTitleFragment, TitleFragment.newInstance("Spielerprofil", "Verwalte dein Profil."));
-        transaction.replace(R.id.userprofileMenuFragment, MenuFragment.newInstance(true, true, false));
+        transaction.replace(R.id.userprofileMenuFragment, MenuFragment.newInstance(true, false, false));
         transaction.commit();
 
         manager = new SettingsManager( UserProfileActivity.this );
@@ -34,10 +34,7 @@ public class UserProfileActivity extends AppCompatActivity implements MenuFragme
     }
 
     public void showStatistics(View view) {
-        Intent intent = new Intent(this, StatisticsActivity.class);
-        // TODO PUT EXTRA: USER_STATISTICS
-        startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        MenuActions.goToStatistics( this );
     }
 
     public void changeUsername(View view) {
@@ -79,6 +76,7 @@ public class UserProfileActivity extends AppCompatActivity implements MenuFragme
     }
 
     @Override
+    // The button is not shown and this method never used.
     public void onSphinxExitPressed() {
         MenuActions.quitGame( this );
     }

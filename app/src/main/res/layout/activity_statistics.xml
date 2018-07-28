@@ -7,7 +7,7 @@
     tools:context="com.sorinmarti.sphinx.StatisticsActivity">
 
     <fragment
-        android:id="@+id/fragment3"
+        android:id="@+id/statisticsTitleFragment"
         android:name="com.sorinmarti.sphinx.TitleFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_title" />
 
     <fragment
-        android:id="@+id/fragment5"
+        android:id="@+id/statisticsMenuFragment"
         android:name="com.sorinmarti.sphinx.MenuFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

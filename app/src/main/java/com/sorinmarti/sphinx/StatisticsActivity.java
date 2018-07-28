@@ -19,14 +19,14 @@ public class StatisticsActivity extends AppCompatActivity implements MenuFragmen
         setContentView(R.layout.activity_statistics);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.menuTitleFragment, TitleFragment.newInstance("Statistik", "Deine Benutzerstatistik"));
-        transaction.replace(R.id.menuMenuFragment, MenuFragment.newInstance(true, true, true));
+        transaction.replace(R.id.statisticsTitleFragment, TitleFragment.newInstance("Statistik", "Deine Benutzerstatistik"));
+        transaction.replace(R.id.statisticsMenuFragment, MenuFragment.newInstance(true, false, true));
         transaction.commit();
     }
 
     @Override
     public void onSphinxBackPressed() {
-
+        MenuActions.goToUserProfile( this );
     }
 
     @Override

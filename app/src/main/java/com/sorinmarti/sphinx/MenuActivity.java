@@ -26,48 +26,24 @@ public class MenuActivity extends AppCompatActivity implements MenuFragment.OnMe
     }
 
     public void showQuizSelection(View view) {
-        Intent intent = new Intent(this, QuizSelectionActivity.class);
-        startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        MenuActions.goToQuizSelection( this );
     }
 
     public void continueQuiz(View view) {
-        Intent intent = new Intent(this, QuizSelectionActivity.class);
-        startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        // TODO
     }
 
     public void showUserProfile(View view) {
-        Intent intent = new Intent(this, UserProfileActivity.class);
-        startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        MenuActions.goToUserProfile( this );
     }
 
     public void showStatistics(View view) {
-        Intent intent = new Intent(this, StatisticsActivity.class);
-        startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-    }
-
-    public void quitGame(View view) {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.dialog_quit_title)
-                .setMessage(R.string.dialog_quit_message)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        finishAffinity();
-                        Intent intent = new Intent(Intent.ACTION_MAIN);
-                        intent.addCategory(Intent.CATEGORY_HOME);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    }})
-                .setNegativeButton(android.R.string.no, null).show();
+        MenuActions.goToStatistics( this );
     }
 
     @Override
     public void onSphinxBackPressed() {
-
+        // never used
     }
 
     @Override
@@ -77,6 +53,6 @@ public class MenuActivity extends AppCompatActivity implements MenuFragment.OnMe
 
     @Override
     public void onSphinxMenuPressed() {
-
+        // never used
     }
 }

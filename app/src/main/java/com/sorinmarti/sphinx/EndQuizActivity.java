@@ -25,7 +25,7 @@ public class EndQuizActivity extends AppCompatActivity {
         transaction.commit();
 
         QuizStatistics stats = QuizLibrary.getInstance().getCurrentQuizStatistics();
-        ((TextView)findViewById(R.id.txtEndGameStatisrics)).setText("Dein Resultat: "+stats.getNumCorrectAnswers()+" von "+stats.getTotalNumAnswers()+" Fragen richtig beantwortet.");
+        ((TextView)findViewById(R.id.txtEndGameStatisrics)).setText(+stats.getNumCorrectAnswers()+" von "+stats.getTotalNumAnswers()+" Fragen richtig beantwortet.");
     }
 
     public void goBackToMenu(View view) {
