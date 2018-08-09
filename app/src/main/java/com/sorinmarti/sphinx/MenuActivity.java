@@ -12,10 +12,8 @@ public class MenuActivity extends AppCompatActivity implements MenuFragment.OnMe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.menuTitleFragment, TitleFragment.newInstance("Sphinx Menu", "Select an option."));
-        transaction.replace(R.id.menuMenuFragment, MenuFragment.newInstance(false, true, false));
-        transaction.commit();
+        MenuActions.commitTitleTransaction( this, R.id.menuTitleFragment, "Sphinx Menu", "Select an option." );
+        MenuActions.commitMenuTransaction(  this, R.id.menuMenuFragment, false, true, false );
 
         findViewById(R.id.btnContinueQuiz).setEnabled(false);
         //findViewById(R.id.btnShowStatistics).setEnabled(false);

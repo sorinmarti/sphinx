@@ -22,10 +22,8 @@ public class UserProfileActivity extends AppCompatActivity implements MenuFragme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.userprofileTitleFragment, TitleFragment.newInstance("Spielerprofil", "Verwalte dein Profil."));
-        transaction.replace(R.id.userprofileMenuFragment, MenuFragment.newInstance(true, false, false));
-        transaction.commit();
+        MenuActions.commitTitleTransaction( this, R.id.userprofileTitleFragment, "Spielerprofil", "Verwalte dein Profil." );
+        MenuActions.commitMenuTransaction(  this, R.id.userprofileMenuFragment, true, false, false );
 
         manager = new SettingsManager( UserProfileActivity.this );
         usernameView = findViewById(R.id.txtUsername);

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 
 /**
  * Created by SOMA on 27.07.2018.
@@ -48,5 +50,17 @@ class MenuActions {
         Intent intent = new Intent(activity, QuizSelectionActivity.class);
         activity.startActivity(intent);
         activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    public static void commitTitleTransaction(FragmentActivity activity, int fragmentId, String title, String subtitle) {
+        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+        transaction.replace(fragmentId, TitleFragment.newInstance(title, subtitle));
+        transaction.commit();
+    }
+
+    public static void commitMenuTransaction(FragmentActivity activity, int fragmentId, boolean showBack, boolean showExit, boolean showMenu) {
+        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+        transaction.replace(fragmentId, MenuFragment.newInstance(showBack, showExit, showMenu));
+        transaction.commit();
     }
 }

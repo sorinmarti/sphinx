@@ -24,10 +24,8 @@ public class QuizSelectionActivity extends AppCompatActivity implements MenuFrag
         listView = this.findViewById(R.id.listQuizzes);
         listView.setAdapter(buildQuizData());
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.selectionTitleFragment, TitleFragment.newInstance("Select a Quiz", "Whatevs"));
-        transaction.replace(R.id.selectionMenuFragment, MenuFragment.newInstance(true, false, false));
-        transaction.commit();
+        MenuActions.commitTitleTransaction( this, R.id.selectionTitleFragment, "Quiz auswählen", "Tippe auf ein Quiz für Infos." );
+        MenuActions.commitMenuTransaction(  this, R.id.selectionMenuFragment, true, false, false );
 
         listView.setItemActionListener(new ActionSlideExpandableListView.OnActionClickListener() {
 

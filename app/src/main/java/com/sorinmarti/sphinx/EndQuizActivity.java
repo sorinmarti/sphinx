@@ -1,6 +1,5 @@
 package com.sorinmarti.sphinx;
 
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,9 +18,7 @@ public class EndQuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_quiz);
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.endquizTitleFragment, TitleFragment.newInstance("Quiz beendet", "...und so hast Du abgeschnitten:"));
-        transaction.commit();
+        MenuActions.commitTitleTransaction( this, R.id.endquizTitleFragment,"Quiz beendet", "...und so hast du abgeschnitten:" );
 
         QuizStatistics stats = QuizLibrary.getInstance().getCurrentQuizStatistics();
         ((TextView)findViewById(R.id.txtEndGameStatisrics)).setText(+stats.getNumCorrectAnswers()+" von "+stats.getTotalNumAnswers()+" Fragen richtig beantwortet.");

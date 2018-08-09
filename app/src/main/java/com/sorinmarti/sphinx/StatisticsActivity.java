@@ -11,10 +11,8 @@ public class StatisticsActivity extends AppCompatActivity implements MenuFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.statisticsTitleFragment, TitleFragment.newInstance("Statistik", "Deine Benutzerstatistik"));
-        transaction.replace(R.id.statisticsMenuFragment, MenuFragment.newInstance(true, false, true));
-        transaction.commit();
+        MenuActions.commitTitleTransaction( this, R.id.statisticsTitleFragment, "Statistik", "Deine Benutzerstatistik" );
+        MenuActions.commitMenuTransaction(  this, R.id.statisticsMenuFragment, true, false, true );
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.sorinmarti.sphinx;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
@@ -22,7 +23,7 @@ public class QuestionActivity extends AppCompatActivity implements QuizTypeAnswe
 
     private TextView txtProgress;
     private ProgressBar countDownBar;
-    private CountdownTask countdownTask;
+    private AsyncTask<Integer, Integer, Integer> countdownTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +36,7 @@ public class QuestionActivity extends AppCompatActivity implements QuizTypeAnswe
         Intent intent = getIntent();
         String quizToLoad = intent.getStringExtra(QuizSelectionActivity.QUIZ_TO_LOAD);
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.questionMenuFragment, MenuFragment.newInstance(false, false, true));
-        transaction.commit();
+        MenuActions.commitMenuTransaction(  this, R.id.questionMenuFragment, false, false, true );
 
         quiz = QuizLibrary.getInstance().getQuiz(quizToLoad);
         QuizLibrary.getInstance().startNewQuizStatistics(quizToLoad);
@@ -58,12 +57,27 @@ public class QuestionActivity extends AppCompatActivity implements QuizTypeAnswe
         }
 
         // Valid question: create countdown
-        countdownTask = new CountdownTask(this, countDownBar) {
+        countdownTask = new AsyncTask<Integer, Integer, Integer>() {
+
             @Override
             protected void onPostExecute(Integer result) {
-                Toast.makeText(QuestionActivity.this, "Out of time!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(QuestionActivity.this, "Out of time!", Toast.LENGTH_SHORT).show();
                 showNextQuestion();
                 return;
+            }
+
+            @Override
+            protected Integer doInBackground(Integer... integers) {
+                int seconds = 5;
+                for(int i=0;i<(seconds*100);i++) {
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        return null;
+                    }
+                    countDownBar.setProgress( i );
+                }
+                return 0;
             }
         };
         countdownTask.execute();
